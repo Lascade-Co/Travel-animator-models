@@ -5,6 +5,8 @@ import { getModelSlugs, getModelBySlug } from '../../models_cache';
 import styles from './modelDetail.module.css';
 import RelatedModels from './related_models';
 import Navbar from '@/app/components/navbar';
+import boat from '../../images/boat.png'
+import travelAnimator from '../../images/travel_animator.png';
 
 // Generate static params for all models
 export async function generateStaticParams() {
@@ -74,9 +76,9 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
     return (
         <>
-            <div style={{ backgroundColor: '#0A161C', minHeight: '100vh', color: '#fff', margin: '12px', padding: 0 }}>
+            <div style={{ backgroundColor: '#0A161C', color: '#fff', margin: '12px', padding: 0 }}>
                 <div className={styles.navbarWrapper}>
-                    <Navbar/>
+                    <Navbar />
                 </div>
                 <section id="detail-section">
                     <div className={styles.wrapper}>
@@ -131,6 +133,25 @@ export default async function ModelDetailPage({ params }: PageProps) {
                         <RelatedModels currentSlug={params.id} currentModel={model} />
                     </div>
                 </section>
+
+                <div className={styles.footer}>
+                    <div className={styles.earth_2}></div>
+                    <Image width={0} height={0} src={boat} alt="boat" className={styles.boat} />
+                    <div className={styles.sub_heading}></div>
+
+                    <div className={styles.travel_animator}>
+                        <Image width={0} height={0} src={travelAnimator} alt="Travel Animator" />
+                    </div>
+                    <div className={styles.privacy_section}>
+                        <a href="" className={styles.privacy_policy}>Privacy Policy</a>
+                        <a href="" className={styles.privacy_policy} style={{ textDecoration: 'none' }}>Terms of Service</a>
+                        <div className={styles.privacy_policy}>Cookie Policy</div>
+                    </div>
+                    <div className={styles.copyright_section}>
+                        <span className="cc-icon" role="img" aria-label="Copyright">©</span>
+                        Travel Animator - 2025
+                    </div>
+                </div>
             </div>
         </>
     );
