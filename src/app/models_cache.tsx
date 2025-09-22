@@ -119,7 +119,7 @@ export async function getModelBySlug(slug: string): Promise<Model | null> {
       .replace(/\-+/g, '-');
   };
   
-  const model = allModels.find(m => slugify(m.name || "") === slug) || null;
+  const model = allModels.find(m => slugify(m.id || "") === slug) || null;
   
   if (model) {
     console.log(`[BUILD CACHE] Found model with slug ${slug} in cache`);

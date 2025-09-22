@@ -14,7 +14,7 @@ export async function generateStaticParams() {
 
     const modelSlugs = await getModelSlugs();
 
-    const params = modelSlugs.map(slug => ({ id: slug }));
+    const params = modelSlugs.map(id => ({ id: id }));
 
     console.log(`[BUILD] Generated ${params.length} static params for model pages`);
     return params;
@@ -81,7 +81,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
         console.log(`Parsed ID: ${modelId}, Slug: ${slug}`);
 
         // First try to get from cached models by slug (for pre-rendered pages)
-        model = await getModelBySlug(slug);
+        model = await getModelBySlug(modelId);
 
         // If not found in cache, try fetching by ID (for new models)
         if (!model && modelId) {
