@@ -1,10 +1,20 @@
+.navbarWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
 .wrapper {
-    width: 80%;
+    width: 95%;
     height: 28rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    margin-top: 2rem;
     margin-left: 50%;
     transform: translateX(-50%);
 }
@@ -121,7 +131,8 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
-    width: 55%;
+    width: 35%;
+    justify-items: center;
 }
 
 .modelCard {

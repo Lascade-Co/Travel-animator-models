@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { getModelSlugs, getModelBySlug } from '../../models_cache';
 import styles from './modelDetail.module.css';
 import RelatedModels from './related_models';
+import Navbar from '@/app/components/navbar';
 
 // Generate static params for all models
 export async function generateStaticParams() {
@@ -73,7 +74,10 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
     return (
         <>
-            <div style={{ backgroundColor: '#121216', minHeight: '100vh', color: '#fff', margin: 0, padding: 0 }}>
+            <div style={{ backgroundColor: '#0A161C', minHeight: '100vh', color: '#fff', margin: '12px', padding: 0 }}>
+                <div className={styles.navbarWrapper}>
+                    <Navbar/>
+                </div>
                 <section id="detail-section">
                     <div className={styles.wrapper}>
                         <Link href="/" className={styles.backLink}>
