@@ -1,9 +1,9 @@
-import ModelsGrid from "./components/models_grid";
+import ModelsPage from "./models/page";
 
 export default function Home() {
   return (
     <>
-      <ModelsGrid/>
+      <ModelsPage/>
     </>
   );
 }

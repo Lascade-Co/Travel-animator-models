@@ -19,9 +19,7 @@ interface ApiResponse {
   next?: string;
 }
 
-// In-memory cache for build time
-let modelsCache: Model[] | null = null;
-let cachePromise: Promise<Model[]> | null = null;
+// Removed caching - fetch fresh data every time
 
 // Fetch all models with pagination and cache them
 async function fetchAllModelsInternal(): Promise<Model[]> {
@@ -71,30 +69,10 @@ async function fetchAllModelsInternal(): Promise<Model[]> {
   return allResults;
 }
 
-// Get all models (cached)
+// Get all models (no caching)
 export async function getAllModels(): Promise<Model[]> {
-  // If we already have cached models, return them
-  if (modelsCache) {
-    console.log(`[BUILD CACHE] Returning ${modelsCache.length} cached models`);
-    return modelsCache;
-  }
-
-  // If a fetch is already in progress, wait for it
-  if (cachePromise) {
-    console.log('[BUILD CACHE] Waiting for ongoing fetch to complete...');
-    modelsCache = await cachePromise;
-    return modelsCache;
-  }
-
-  // Start a new fetch and cache the promise
   console.log('[BUILD CACHE] Starting fresh fetch of all models...');
-  cachePromise = fetchAllModelsInternal();
-  modelsCache = await cachePromise;
-  
-  // Clear the promise since it's resolved
-  cachePromise = null;
-  
-  return modelsCache;
+  return await fetchAllModelsInternal();
 }
 
 // Get a specific model by ID (from cache)
@@ -128,12 +106,7 @@ export async function getModelIds(): Promise<string[]> {
   return ids;
 }
 
-// Optional: Clear cache (useful for testing)
-export function clearModelsCache(): void {
-  modelsCache = null;
-  cachePromise = null;
-  console.log('[BUILD CACHE] Cache cleared');
-}
+// Cache clearing function removed (no longer needed)
 
 // Get a specific model by slug (from cache)
 export async function getModelBySlug(slug: string): Promise<Model | null> {

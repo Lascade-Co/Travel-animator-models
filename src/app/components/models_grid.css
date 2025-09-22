@@ -326,7 +326,7 @@ body .model-card p,
     }
 
     .models-section.height-limited {
-        height: 26.5rem;
+        height: 26rem;
     }
 
     .expand-button {
@@ -348,7 +348,7 @@ body .model-card p,
         z-index: 100;
         width: 130%;
         height: 50%;
-        filter: drop-shadow(0 0 100px #4384D852);
+        /* filter: drop-shadow(0 0 100px #4384D852); */
         background: url(../images/earth_mobile_2.svg) bottom / cover no-repeat;
         background-size: 25rem;
         width: 100%;
@@ -454,7 +454,7 @@ body .model-card p,
     .earth_2 {
         width: 100%;
         height: 120%;
-        filter: drop-shadow(0 0 6rem #4384D852);
+        /* filter: drop-shadow(0 0 6rem #4384D852); */
         background: url(../images/earth_mobile_2.svg) bottom / cover no-repeat;
         background-blend-mode: multiply;
         background-size: 30rem;
@@ -556,7 +556,7 @@ body .model-card p,
     .earth_2 {
         width: 100%;
         height: 140%;
-        filter: drop-shadow(0 0 6rem #4384D852);
+        /* filter: drop-shadow(0 0 6rem #4384D852); */
         background: url(../images/earth_mobile_2.svg) bottom / cover no-repeat;
         background-blend-mode: multiply;
         background-size: 52rem;

@@ -1,4 +1,4 @@
-import ModelsGrid from '../components/models_grid';
+import ModelsGridClient from '../components/models_grid_Client';
 import { getAllModels } from '../models_cache';
 
 // Metadata for the page
@@ -17,7 +17,7 @@ export default async function ModelsPage() {
 
   return (
     <div>
-      <ModelsGrid initialModels={models} />
+      <ModelsGridClient initialModels={models} />
     </div>
   );
 }
