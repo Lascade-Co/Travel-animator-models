@@ -229,6 +229,9 @@
     font-style: Medium;
     font-size: 14px;
     letter-spacing: -3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .copyright_section {

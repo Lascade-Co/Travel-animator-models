@@ -109,7 +109,7 @@ export async function getModelIds(): Promise<string[]> {
 // Cache clearing function removed (no longer needed)
 
 // Get a specific model by slug (from cache)
-export async function getModelBySlug(slug: string): Promise<Model | null> {
+export async function getModelDetailById(id: string): Promise<Model | null> {
   const allModels = await getAllModels();
   
   const slugify = (str: string | undefined | null): string => {
@@ -119,12 +119,12 @@ export async function getModelBySlug(slug: string): Promise<Model | null> {
       .replace(/\-+/g, '-');
   };
   
-  const model = allModels.find(m => slugify(m.id || "") === slug) || null;
+  const model = allModels.find(m => slugify(m.id || "") === id) || null;
   
   if (model) {
-    console.log(`[BUILD CACHE] Found model with slug ${slug} in cache`);
+    console.log(`[BUILD CACHE] Found model with slug ${id} in cache`);
   } else {
-    console.log(`[BUILD CACHE] Model with slug ${slug} not found in cache`);
+    console.log(`[BUILD CACHE] Model with slug ${id} not found in cache`);
   }
   
   return model;

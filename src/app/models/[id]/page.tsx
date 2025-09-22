@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getModelSlugs, getModelBySlug, getModelById, Model, getAllModels } from '../../models_cache';
+import { getModelSlugs, getModelById, Model, getAllModels, getModelDetailById } from '../../models_cache';
 import styles from './modelDetail.module.css';
 import RelatedModels from './related_models';
 import Navbar from '@/app/components/navbar';
@@ -41,7 +41,7 @@ const truncateToWords = (text: string | undefined | null, maxWords: number): str
 
 // Generate metadata for each model page
 export async function generateMetadata({ params }: { params: { id: string } }) {
-    const model = await getModelBySlug(params.id);
+    const model = await getModelById(params.id);
 
     if (!model) {
         return {
@@ -81,7 +81,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
         console.log(`Parsed ID: ${modelId}, Slug: ${slug}`);
 
         // First try to get from cached models by slug (for pre-rendered pages)
-        model = await getModelBySlug(modelId);
+        model = await getModelDetailById(modelId);
 
         // If not found in cache, try fetching by ID (for new models)
         if (!model && modelId) {
@@ -186,9 +186,9 @@ export default async function ModelDetailPage({ params }: PageProps) {
                         <Image width={0} height={0} src={travelAnimator} alt="Travel Animator" />
                     </div>
                     <div className={styles.privacy_section}>
-                        <a href="" className={styles.privacy_policy}>Privacy Policy</a>
-                        <a href="" className={styles.privacy_policy} style={{ textDecoration: 'none' }}>Terms of Service</a>
-                        <div className={styles.privacy_policy}>Cookie Policy</div>
+                        <a href="https://travelanimator.com/privacy-policy/" className={styles.privacy_policy}>Privacy Policy</a>
+                        <a href="https://travelanimator.com/terms-of-service/" className={styles.privacy_policy} style={{ textDecoration: 'none' }}>Terms of Service</a>
+                        <a href='https://travelanimator.com/privacy-policy/' className={styles.privacy_policy}>Cookie Policy</a>
                     </div>
                     <div className={styles.copyright_section}>
                         <span className="cc-icon" role="img" aria-label="Copyright">©</span>
