@@ -341,7 +341,7 @@ export default function ModelsGrid({ initialModels }: ModelsGridProps = {}) {
                                         {!isExpanded && (
                                             <div className="expand-button">
                                                 <button onClick={() => expandSection(category)}>
-                                                    Show More <span style={{ marginLeft: '8px' }}>↓</span>
+                                                    Show More
                                                 </button>
                                             </div>
                                         )}
@@ -349,7 +349,7 @@ export default function ModelsGrid({ initialModels }: ModelsGridProps = {}) {
                                         {isExpanded && (
                                             <div className="collapse-button">
                                                 <button onClick={() => collapseSection(category)}>
-                                                    Show Less <span style={{ marginLeft: '8px' }}>↑</span>
+                                                    Show Less
                                                 </button>
                                             </div>
                                         )}

@@ -23,7 +23,7 @@ h2.models-title {
 }
 
 .models-section.height-limited {
-    height: 27rem;
+    height: 24.5rem;
     overflow: hidden;
     position: relative;
 }
@@ -39,7 +39,7 @@ h2.models-title {
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(to top, #0A161C 70%, transparent);
-    width: 100%;
+    width: 80%;
     height: 80px;
     display: flex;
     align-items: flex-end;
@@ -104,7 +104,7 @@ h2.models-title {
     gap: 24px;
     justify-items: center;
     align-items: center;
-    width: 90%;
+    width: 80%;
     margin-left: 50%;
     transform: translateX(-50%);
 }
@@ -237,6 +237,14 @@ body .model-card p,
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    .models-section.height-limited {
+        height: 26.5rem;
+    }
+
+    .expand-button {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) and (min-width: 481px) {
@@ -253,6 +261,14 @@ body .model-card p,
         height: 146.5px;
         border-radius: 36px;
     }
+
+    .models-section.height-limited {
+        height: 34rem;
+    }
+
+    .expand-button {
+        width: 100%;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 1080px) {
@@ -268,5 +284,13 @@ body .model-card p,
         width: 146.5px;
         height: 146.5px;
         border-radius: 36px;
+    }
+
+    .models-section.height-limited {
+        height: 21.5rem;
+    }
+
+    .expand-button {
+        width: 100%;
     }
 }
