@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getModelSlugs, getModelBySlug } from '../../models_cache';
+import { getModelSlugs, getModelBySlug, getModelById, Model } from '../../models_cache';
 import styles from './modelDetail.module.css';
 import RelatedModels from './related_models';
 import Navbar from '@/app/components/navbar';
@@ -19,6 +19,9 @@ export async function generateStaticParams() {
     console.log(`[BUILD] Generated ${params.length} static params for model pages`);
     return params;
 }
+
+// Enable fallback for new models added after build time
+export const dynamicParams = true;
 
 // Utility functions
 const toTitleCase = (str: string | undefined | null): string => {
@@ -64,8 +67,28 @@ interface PageProps {
 export default async function ModelDetailPage({ params }: PageProps) {
     console.log('ModelDetailPage rendering with params:', params);
 
-    const model = await getModelBySlug(params.id);
-    console.log('Model found:', model);
+    // Parse id_slug format
+    const idSlug = params.id;
+    const underscoreIndex = idSlug.indexOf('_');
+    
+    let model: Model | null = null;
+    
+    if (underscoreIndex !== -1) {
+        // Extract ID from id_slug format
+        const modelId = idSlug.substring(0, underscoreIndex);
+        const slug = idSlug.substring(underscoreIndex + 1);
+        
+        console.log(`Parsed ID: ${modelId}, Slug: ${slug}`);
+        
+        // First try to get from cached models by slug (for pre-rendered pages)
+        model = await getModelBySlug(slug);
+        
+        // If not found in cache, try fetching by ID (for new models)
+        if (!model && modelId) {
+            console.log('Model not found in cache, attempting server fetch by ID...');
+            model = await getModelById(modelId);
+        }
+    }
 
     if (!model) {
         console.log('Model not found, showing 404');

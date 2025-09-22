@@ -2,11 +2,11 @@
 // Centralized models fetching and caching for build time
 
 // Type definitions
-interface Texture {
+export interface Texture {
   thumbnail?: string;
 }
 
-interface Model {
+export interface Model {
   id?: string;
   name?: string;
   category?: string;
@@ -75,7 +75,6 @@ export async function getAllModels(): Promise<Model[]> {
   return await fetchAllModelsInternal();
 }
 
-// Get a specific model by ID (from cache)
 // Get model slugs for generateStaticParams (from cache)
 export async function getModelSlugs(): Promise<string[]> {
   const allModels = await getAllModels();
@@ -88,8 +87,8 @@ export async function getModelSlugs(): Promise<string[]> {
   };
   
   const slugs = allModels
-    .filter(model => model.name) // Only include models with valid names
-    .map(model => slugify(model.name!));
+    .filter(model => model.name && model.id) // Only include models with valid names and IDs
+    .map(model => `${model.id}_${slugify(model.name!)}`); // Change to id_slug format
   
   console.log(`[BUILD CACHE] Generated ${slugs.length} model slugs for static params`);
   return slugs;
@@ -128,4 +127,31 @@ export async function getModelBySlug(slug: string): Promise<Model | null> {
   }
   
   return model;
+}
+
+// Get a specific model by ID (for fallback server rendering)
+export async function getModelById(id: string): Promise<Model | null> {
+  console.log(`[SERVER] Fetching individual model with ID: ${id}`);
+  
+  try {
+    const res = await fetch(`https://dashboard.lascade.com/travel_animator/v0/web/models/${id}`, {
+      headers: {
+        "accept": "application/json",
+        "X-CSRFTOKEN": "tdZ0CBLlvwkBMLxiFUd92zcho51IJ2mxmLisBlIlG3DQKFuvCqlEffax94XVubp5"
+      },
+      cache: 'no-store'
+    });
+
+    if (!res.ok) {
+      console.log(`[SERVER] Model with ID ${id} not found (${res.status})`);
+      return null;
+    }
+
+    const model: Model = await res.json();
+    console.log(`[SERVER] Successfully fetched model with ID ${id}`);
+    return model;
+  } catch (error) {
+    console.error(`[SERVER] Error fetching model with ID ${id}:`, error);
+    return null;
+  }
 }

@@ -9,14 +9,11 @@ import Image from 'next/image';
 import './models_grid.css';
 import boat from '../images/boat.png';
 import travelAnimator from '../images/travel_animator.png';
+import { Texture } from '../models_cache';
 
 // Type definitions
 interface ModelsGridProps {
     initialModels?: Model[];
-}
-
-interface Texture {
-    thumbnail?: string;
 }
 
 interface Model {
@@ -109,7 +106,8 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
     const handleModelClick = (e: React.MouseEvent, model: Model) => {
         e.preventDefault();
         const slug = slugify(model.name || "");
-        window.location.href = `/models/${slug}`;
+        const idSlug = `${model.id}_${slug}`; // Change to id_slug format
+        window.location.href = `/models/${idSlug}`;
     };
 
     // Expand/collapse section handlers
@@ -134,7 +132,7 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
             const slug = modelMatch ? modelMatch[1] : null;
             setCurrentSlug(slug);
             setShowDetail(!!slug);
-            
+
             if (slug && models.length > 0) {
                 const targetModel = models.find(m => slugify(m.name || "") === slug);
                 if (targetModel) {
@@ -144,7 +142,7 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
                 }
             }
         }
-        
+
         setupIntersectionObserver();
 
         return () => {
@@ -342,12 +340,17 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
                                             {relatedModels.map((relatedModel, index) => {
                                                 const thumb = relatedModel.textures?.[0]?.thumbnail || "";
                                                 const name = relatedModel.name || "";
+                                                const slug = slugify(name);
+                                                const idSlug = `${relatedModel.id}_${slug}`; // Add this line
 
                                                 return (
                                                     <div
                                                         key={relatedModel.id || index}
                                                         className="model-card"
-                                                        onClick={(e) => handleModelClick(e, relatedModel)}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            window.location.href = `/models/${idSlug}`; // Use idSlug instead of slug
+                                                        }}
                                                         style={{
                                                             opacity: 1,
                                                             visibility: 'visible',
@@ -388,17 +391,17 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
                 )}
             </div>
 
-            <div className="footer">            
+            <div className="footer">
                 <div className="earth_2"></div>
                 <Image width={0} height={0} src={boat} alt="boat" className="boat" />
                 <div className="sub-heading"></div>
 
                 <div className="travel_animator">
-                    <Image width={0} height={0} src={travelAnimator}  alt="Travel Animator" />
+                    <Image width={0} height={0} src={travelAnimator} alt="Travel Animator" />
                 </div>
                 <div className="privacy-section">
                     <a href="" className="privacy-policy">Privacy Policy</a>
-                    <a href="" className="privacy-policy" style={{textDecoration: 'none'}}>Terms of Service</a>
+                    <a href="" className="privacy-policy" style={{ textDecoration: 'none' }}>Terms of Service</a>
                     <div className="privacy-policy">Cookie Policy</div>
                 </div>
                 <div className="copyright-section">

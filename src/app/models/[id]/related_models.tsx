@@ -4,13 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './modelDetail.module.css'
-
-interface Model {
-  id?: string;
-  name?: string;
-  category?: string;
-  textures?: { thumbnail?: string }[];
-}
+import { Model } from '@/app/models_cache';
 
 interface RelatedModelsProps {
   currentSlug: string;
@@ -96,9 +90,9 @@ export default function RelatedModels({ currentSlug, currentModel }: RelatedMode
             const slug = slugify(name);
 
             return (
-              <Link 
-                key={model.id || index} 
-                href={`/models/${slug}/`}
+              <Link
+                key={model.id || index}
+                href={`/models/${model.id}_${slug}/`} // Change to id_slug format
                 className={styles.modelCard}
                 style={{ textDecoration: 'none' }}
               >
