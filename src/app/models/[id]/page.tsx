@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getModelSlugs, getModelBySlug, getModelById, Model } from '../../models_cache';
+import { getModelSlugs, getModelBySlug, getModelById, Model, getAllModels } from '../../models_cache';
 import styles from './modelDetail.module.css';
 import RelatedModels from './related_models';
 import Navbar from '@/app/components/navbar';
@@ -70,19 +70,19 @@ export default async function ModelDetailPage({ params }: PageProps) {
     // Parse id_slug format
     const idSlug = params.id;
     const underscoreIndex = idSlug.indexOf('_');
-    
+
     let model: Model | null = null;
-    
+
     if (underscoreIndex !== -1) {
         // Extract ID from id_slug format
         const modelId = idSlug.substring(0, underscoreIndex);
         const slug = idSlug.substring(underscoreIndex + 1);
-        
+
         console.log(`Parsed ID: ${modelId}, Slug: ${slug}`);
-        
+
         // First try to get from cached models by slug (for pre-rendered pages)
         model = await getModelBySlug(slug);
-        
+
         // If not found in cache, try fetching by ID (for new models)
         if (!model && modelId) {
             console.log('Model not found in cache, attempting server fetch by ID...');
@@ -96,6 +96,26 @@ export default async function ModelDetailPage({ params }: PageProps) {
     }
 
     console.log('About to render model detail page');
+
+    const allModels = await getAllModels();
+
+    // Calculate related models
+    const getRelatedModels = (currentModel: Model, allModels: Model[]): Model[] => {
+        const currentIndex = allModels.findIndex(m => m.id === currentModel.id);
+        if (currentIndex === -1) return [];
+
+        const numRelatedModels = 5;
+        const relatedModels: Model[] = [];
+
+        for (let i = 1; i <= numRelatedModels; i++) {
+            const nextIndex = (currentIndex + i) % allModels.length;
+            relatedModels.push(allModels[nextIndex]);
+        }
+
+        return relatedModels;
+    };
+
+    const relatedModels = getRelatedModels(model, allModels);
 
     return (
         <>
@@ -153,7 +173,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                             />
                         </div>
 
-                        <RelatedModels currentSlug={params.id} currentModel={model} />
+                        <RelatedModels relatedModels={relatedModels} />
                     </div>
                 </section>
 

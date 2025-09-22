@@ -35,8 +35,9 @@ async function fetchAllModelsInternal(): Promise<Model[]> {
       const res = await fetch(url, {
         headers: {
           "accept": "application/json",
-          "X-CSRFTOKEN": "tdZ0CBLlvwkBMLxiFUd92zcho51IJ2mxmLisBlIlG3DQKFuvCqlEffax94XVubp5"
+          
         },
+        next: { revalidate: 3600 },
         // Ensure fresh data at build time
         cache: 'no-store'
       });
@@ -137,7 +138,6 @@ export async function getModelById(id: string): Promise<Model | null> {
     const res = await fetch(`https://dashboard.lascade.com/travel_animator/v0/web/models/${id}`, {
       headers: {
         "accept": "application/json",
-        "X-CSRFTOKEN": "tdZ0CBLlvwkBMLxiFUd92zcho51IJ2mxmLisBlIlG3DQKFuvCqlEffax94XVubp5"
       },
       cache: 'no-store'
     });
