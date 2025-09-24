@@ -57,6 +57,11 @@
     text-align: start;
 }
 
+.md_description {
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+}
+
 .heroWrap img {
     width: 28rem !important;
     height: 28rem !important;
@@ -150,16 +155,17 @@
 }
 
 .footer {
-    position: relative;
-    margin-bottom: 0;
-    width: 100%;
-    height: 550px;
-    display: flex;
     flex-direction: column;
     align-items: center;
+    width: 1104.48px;
+    height: 550px;
+    margin-bottom: 0;
     padding: 30px;
-    margin-top:20rem;
-    /* background-color: rebeccapurple; */
+    display: flex;
+    position: relative;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 20rem;
 }
 
 .earth_2 {
@@ -194,15 +200,14 @@
 }
 
 .sub_heading {
-    position: absolute;
-    left: 12rem;
-    transform: rotate(-2deg);
-    bottom: 20.625rem;
+    background-blend-mode: multiply;
+    background: url(../../images/sub_heading_text.svg) center / 21rem 12rem no-repeat;
     width: 21rem;
     height: 12rem;
-    background: url(../../images/sub_heading_text.svg) center / cover no-repeat;
-    background-blend-mode: multiply;
-    background-size: 21rem 12rem;
+    position: absolute;
+    bottom: 20.625rem;
+    left: 4rem;
+    transform: rotate(-2deg);
 }
 
 .privacy_section {
@@ -250,6 +255,11 @@
         flex-direction: column-reverse;
         padding: 1rem 1rem;
         gap: 3rem;
+    }
+
+    .heroWrap img {
+        width: 24rem !important;
+        height: 24rem !important;
     }
 
     #md-hero {
@@ -304,6 +314,7 @@
     .footer {
         overflow: hidden;
         height: 20rem;
+        width: 100%;
     }
 
     .sub_heading-text {
@@ -316,7 +327,7 @@
         z-index: 100;
         width: 130%;
         height: 50%;
-        /* filter: drop-shadow(0 0 100px #4384D852); */
+        filter: none;
         background: url(../../images/earth_mobile_2.svg) bottom / cover no-repeat;
         background-size: 25rem;
         width: 100%;
@@ -450,6 +461,7 @@
     .footer {
         overflow: hidden;
         height: 25rem;
+        width: 100%;
     }
 
     .sub_heading-text {
@@ -459,7 +471,7 @@
     .earth_2 {
         width: 100%;
         height: 120%;
-        /* filter: drop-shadow(0 0 6rem #4384D852); */
+        filter: none;
         background: url(../../images/earth_mobile_2.svg) bottom / cover no-repeat;
         background-blend-mode: multiply;
         background-size: 30rem;
@@ -588,16 +600,17 @@
         justify-items: center;
     }
 
-        .footer {
+    .footer {
         /* top: 440vh; */
         height: 600px;
         overflow: hidden;
+        width: 925.48px;
     }
 
     .earth_2 {
         width: 100%;
         height: 140%;
-        /* filter: drop-shadow(0 0 6rem #4384D852); */
+        filter: none;
         background: url(../../images/earth_mobile_2.svg) bottom / cover no-repeat;
         background-blend-mode: multiply;
         background-size: 52rem;

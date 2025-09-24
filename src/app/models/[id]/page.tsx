@@ -147,7 +147,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                                     alignItems: 'flex-start',
                                     justifyContent: 'center'
                                 }}>
-                                    <div id="md-description">
+                                    <div id="md-description" className={styles.md_description}>
                                         {model.description ?
                                             truncateToWords(model.description, 100) :
                                             "No description available for this model."
