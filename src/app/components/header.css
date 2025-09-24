@@ -29,14 +29,14 @@ body {
     height: 185px;
 }
 
-.header-image {
+/* .header-image {
     position: absolute;
     top: 15%;
     left: 50%;
     transform: translateX(-50%);
     width: 1440px;
     height: 400px;
-}
+} */
 
 .cloud2 {
     position: absolute;

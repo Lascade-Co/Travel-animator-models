@@ -1,0 +1,284 @@
+.heading {
+    width: 1132.8px;
+    height: 25rem;
+    position: relative;
+    /* background-color: rebeccapurple; */
+}
+
+.heading_text_1 {
+    width: 906.23px;
+    height: 20rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.heading_text_2 {
+    width: 623.031px;
+    height: 20rem;
+    position: absolute;
+    left: 50%;
+    top: 12%;
+    transform: translateX(-50%);
+}
+
+.hot_air_balloon {
+    width: 45px;
+    height: 50px;
+    position: absolute;
+    top: 16%;
+    left: 15%;
+}
+
+.header_boat {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 35%;
+    left: 21%;
+}
+
+.car {
+    width: 67px;
+    height: 67px;
+    position: absolute;
+    top: 17%;
+    left: 29%;
+}
+
+.tanker {
+    position: absolute;
+    top: 24%;
+    left: 47%;
+}
+
+.cycle {
+    position: absolute;
+    top: -4%;
+    left: 55%;
+}
+
+.bullet_train {
+    position: absolute;
+    top: 32%;
+    left: 59%;
+}
+
+.flight {
+    position: absolute;
+    top: 5%;
+    right: 11%;
+}
+
+@media (max-width: 480px) {
+    .heading {
+        width: 406px;
+        height: 10rem;
+    }
+
+    .heading_text_1 {
+        width: 324.81px;
+        height: 8rem;
+    }
+
+    .heading_text_2 {
+        width: 263.89px;
+        height: 8rem;
+        top: 20%;
+    }
+
+    .hot_air_balloon {
+        width: 30px;
+        height: 35px;
+        position: absolute;
+        top: 10%;
+        left: 12%;
+    }
+
+    .header_boat {
+        width: 35px;
+        height: 35px;
+        position: absolute;
+        top: 31%;
+        left: 21%;
+    }
+
+    .car {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 14%;
+        left: 28%;
+    }
+
+    .tanker {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 22%;
+        left: 45%;
+    }
+
+    .cycle {
+        position: absolute;
+        top: -4%;
+        left: 53%;
+        width: 45px;
+        height: 45px;
+    }
+
+    .bullet_train {
+        position: absolute;
+        top: 32%;
+        left: 59%;
+        width: 45px;
+        height: 45px;
+    }
+
+    .flight {
+        position: absolute;
+        top: 5%;
+        right: 11%;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+    .heading {
+        height: 11rem;
+        width: 516px;
+    }
+
+    .heading_text_1 {
+        width: 412px;
+        height: 8rem;
+    }
+
+    .heading_text_2 {
+        width: 335.4px;
+        height: 8rem;
+    }
+
+    .hot_air_balloon {
+        width: 35px;
+        height: 40px;
+        position: absolute;
+        top: 4%;
+        left: 13%;
+    }
+
+    .header_boat {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 28%;
+        left: 21%;
+    }
+
+    .car {
+        width: 45px;
+        height: 45px;
+        position: absolute;
+        top: 8%;
+        left: 28%;
+    }
+
+    .tanker {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 18%;
+        left: 47%;
+    }
+
+    .cycle {
+        width: 45px;
+        height: 45px;
+        position: absolute;
+        top: -8%;
+        left: 55%;
+    }
+
+    .bullet_train {
+        width: 45px;
+        height: 45px;
+        position: absolute;
+        top: 27%;
+        left: 59%;
+    }
+
+    .flight {
+        width: 45px;
+        height: 45px;
+        position: absolute;
+        top: 0%;
+        right: 14%;
+    }
+}
+
+@media (max-width: 1080px) and (min-width: 769px) {
+    .heading {
+        width: 621.594px;
+        height: 15rem;
+    }
+
+    .heading_text_1 {
+        width: 621.594px;
+        height: 10rem;
+    }
+
+    .heading_text_2 {
+        width: 466.2px;
+        height: 10rem;
+        top: 18%;
+    }
+
+    .hot_air_balloon {
+        width: 45px;
+        height: 50px;
+        position: absolute;
+        top: 1%;
+        left: 4%;
+    }
+
+    .header_boat {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 25%;
+        left: 14%;
+    }
+
+    .car {
+        width: 67px;
+        height: 67px;
+        position: absolute;
+        top: 3%;
+        left: 23%;
+    }
+
+    .tanker {
+        position: absolute;
+        top: 12%;
+        left: 43%;
+    }
+
+    .cycle {
+        position: absolute;
+        top: -25%;
+        left: 55%;
+    }
+
+    .bullet_train {
+        position: absolute;
+        top: 22%;
+        left: 61%;
+    }
+
+    .flight {
+        position: absolute;
+        top: -20%;
+        right: -1%;
+    }
+}

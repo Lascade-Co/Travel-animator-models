@@ -3,6 +3,7 @@
 import './header.css';
 import Image from 'next/image';
 import Navbar from './navbar';
+import Heading from './heading';
 
 export default function Header() {
     return (
@@ -16,13 +17,7 @@ export default function Header() {
         height={100}
         className="cloud1"
       />
-      <Image
-        src="https://travelanimator.com/wp-content/uploads/2025/09/header.svg"
-        alt="header"
-        width={0}
-        height={0}
-        className="header-image"
-      />
+      <Heading/>
       <Image
         src="https://travelanimator.com/wp-content/uploads/2025/09/cloud2.svg"
         alt="cloud2"
