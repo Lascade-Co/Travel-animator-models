@@ -62,14 +62,20 @@ export default function Navbar() {
         onClick={() => setMenuOpen(!menuOpen)}
       />
 
+      {menuOpen && <div className="mobile-menu-overlay" onClick={() => setMenuOpen(false)} />}
       <div className={`mobile-menu ${menuOpen ? "show" : ""}`}>
-        <a href="http://support.travelanimator.com">Forum</a>
-        <a href="https://airtable.com/appbc8jMEFA2bbnzx/pagwP6ZWi67qw4j3b/form">
+        <div className="mobile-menu-header">
+          <span className="menu-title">Menu</span>
+          <span className="close-icon" onClick={() => setMenuOpen(false)}>✕</span>
+        </div>
+        <a href="http://models.travelanimator.com" onClick={() => setMenuOpen(false)}>Models</a>
+        <a href="http://support.travelanimator.com" onClick={() => setMenuOpen(false)}>Forum</a>
+        <a href="https://airtable.com/appbc8jMEFA2bbnzx/pagwP6ZWi67qw4j3b/form" onClick={() => setMenuOpen(false)}>
           Collaborate with us
         </a>
-        <a href="https://travelanimator.com/hub">Resource Hub</a>
-        <a href="mailto:connect@travelanimator.com">Be our partner</a>
-        <a href="https://travelanimator.com/release-notes/">Releases</a>
+        <a href="https://travelanimator.com/hub" onClick={() => setMenuOpen(false)}>Resource Hub</a>
+        <a href="mailto:connect@travelanimator.com" onClick={() => setMenuOpen(false)}>Be our partner</a>
+        <a href="https://travelanimator.com/release-notes/" onClick={() => setMenuOpen(false)}>Releases</a>
       </div>
     </div>
   );
