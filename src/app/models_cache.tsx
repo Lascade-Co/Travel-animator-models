@@ -37,7 +37,7 @@ async function fetchAllModelsInternal(): Promise<Model[]> {
           "accept": "application/json",
 
         },
-        next: { revalidate: 3600 },
+        cache: 'no-store',
       });
 
       if (!res.ok) {
@@ -68,9 +68,9 @@ async function fetchAllModelsInternal(): Promise<Model[]> {
   return allResults;
 }
 
-// Get all models (no caching)
+// Get all models (no caching for SSR)
 export async function getAllModels(): Promise<Model[]> {
-  console.log('[BUILD CACHE] Starting fresh fetch of all models...');
+  console.log('[SSR] Starting fresh fetch of all models...');
   return await fetchAllModelsInternal();
 }
 

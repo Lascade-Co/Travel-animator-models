@@ -33,6 +33,5 @@ export default async function ModelsPage() {
   );
 }
 
-// Force static generation (no revalidation)
-export const dynamic = 'force-static';
-export const revalidate = false;
+// Force server-side rendering
+export const dynamic = 'force-dynamic';
