@@ -35,7 +35,7 @@ async function fetchAllModelsInternal(): Promise<Model[]> {
       const res = await fetch(url, {
         headers: {
           "accept": "application/json",
-          
+
         },
         next: { revalidate: 3600 },
       });
@@ -77,18 +77,18 @@ export async function getAllModels(): Promise<Model[]> {
 // Get model slugs for generateStaticParams (from cache)
 export async function getModelSlugs(): Promise<string[]> {
   const allModels = await getAllModels();
-  
+
   const slugify = (str: string | undefined | null): string => {
     return String(str || '').toLowerCase().trim()
       .replace(/[\s_]+/g, '-')
       .replace(/[^a-z0-9\-]/g, '')
       .replace(/\-+/g, '-');
   };
-  
+
   const slugs = allModels
     .filter(model => model.name && model.id) // Only include models with valid names and IDs
     .map(model => `${model.id}_${slugify(model.name!)}`); // Change to id_slug format
-  
+
   console.log(`[BUILD CACHE] Generated ${slugs.length} model slugs for static params`);
   return slugs;
 }
@@ -99,7 +99,7 @@ export async function getModelIds(): Promise<string[]> {
   const ids = allModels
     .filter(model => model.id) // Only include models with valid IDs
     .map(model => model.id!);
-  
+
   console.log(`[BUILD CACHE] Generated ${ids.length} model IDs for static params`);
   return ids;
 }
@@ -109,29 +109,29 @@ export async function getModelIds(): Promise<string[]> {
 // Get a specific model by slug (from cache)
 export async function getModelDetailById(id: string): Promise<Model | null> {
   const allModels = await getAllModels();
-  
+
   const slugify = (str: string | undefined | null): string => {
     return String(str || '').toLowerCase().trim()
       .replace(/[\s_]+/g, '-')
       .replace(/[^a-z0-9\-]/g, '')
       .replace(/\-+/g, '-');
   };
-  
+
   const model = allModels.find(m => slugify(m.id || "") === id) || null;
-  
+
   if (model) {
     console.log(`[BUILD CACHE] Found model with slug ${id} in cache`);
   } else {
     console.log(`[BUILD CACHE] Model with slug ${id} not found in cache`);
   }
-  
+
   return model;
 }
 
 // Get a specific model by ID (for fallback server rendering)
 export async function getModelById(id: string): Promise<Model | null> {
   console.log(`[SERVER] Fetching individual model with ID: ${id}`);
-  
+
   try {
     const res = await fetch(`https://dashboard.lascade.com/travel_animator/v0/web/models/${id}`, {
       headers: {
@@ -154,27 +154,41 @@ export async function getModelById(id: string): Promise<Model | null> {
   }
 }
 
-// lib/posthog.js
-export async function getPosthogInsight() {
-  const POSTHOG_PROJECT_ID = "107752";
-  const POSTHOG_PERSONAL_API_KEY = 'phx_tDIWFmhgN2JB7INm0sfvJ3PHWbZCAHr6CMU25J5DVm55jFI';
-  const shortId = 'wWjNhQcp';
+// Create a usage map from PostHog data
+export async function getModelUsageMap(): Promise<Map<string, number>> {
+  try {
+    const POSTHOG_PROJECT_ID = "107752";
+    const POSTHOG_PERSONAL_API_KEY = 'phx_tDIWFmhgN2JB7INm0sfvJ3PHWbZCAHr6CMU25J5DVm55jFI';
+    const shortId = 'wWjNhQcp';
 
-  const response = await fetch(
-    `https://us.posthog.com/api/projects/${POSTHOG_PROJECT_ID}/insights/?short_id=${shortId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${POSTHOG_PERSONAL_API_KEY}`,
-      },
-      cache: "no-store", // ensures no caching in Next.js fetch
+    const response = await fetch(
+      `https://us.posthog.com/api/projects/${POSTHOG_PROJECT_ID}/insights/?short_id=${shortId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${POSTHOG_PERSONAL_API_KEY}`,
+        },
+        cache: "no-store",
+      }
+    );
+
+    if (!response.ok) {
+      console.error(`PostHog API error: ${response.status}`);
+      return new Map();
     }
-  );
 
-  if (!response.ok) {
-    throw new Error(`PostHog API error: ${response.status}`);
+    const data = await response.json();
+    const results = data.results?.[0]?.result || [];
+
+    // Create a map: model_id -> rank (lower rank = more used)
+    const usageMap = new Map<string, number>();
+    results.forEach((item: string[], index: number) => {
+      const modelId = item[0]; // First element is model_id
+      usageMap.set(modelId, index); // index represents rank
+    });
+    
+    return usageMap;
+  } catch (error) {
+    console.error('[BUILD] Error fetching PostHog data:', error);
+    return new Map();
   }
-
-  const data = await response.json(); // Add await here
-  console.log("POSTHOG INSIGHT: ", JSON.stringify(data, null, 2)); // Pretty print
-  return data;
 }

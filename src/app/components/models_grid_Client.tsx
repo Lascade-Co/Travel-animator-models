@@ -32,7 +32,15 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
     const router = useRouter();
 
     const [currentSlug, setCurrentSlug] = useState<string | null>(null);
-    const [models] = useState<Model[]>(initialModels); // No need to fetch, we have server data
+
+    const [models] = useState<Model[]>(initialModels);
+
+    // Debug: Check if sorted models are received
+    useEffect(() => {
+        console.log('[CLIENT] Received models count:', models.length);
+        console.log('[CLIENT] First 5 models:', models.slice(0, 5).map(m => ({ id: m.id, name: m.name })));
+    }, [models]);
+    
     const [currentModel, setCurrentModel] = useState<Model | null>(null);
     const [showDetail, setShowDetail] = useState<boolean>(false);
     const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
@@ -152,13 +160,29 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
         };
     }, [models, router, setupIntersectionObserver]);
 
-    // Group models by category
-    const groupedModels: GroupedModels = models.reduce((acc: GroupedModels, model: Model) => {
+    // Group models by category WHILE PRESERVING SORT ORDER
+    const groupedModels: GroupedModels = {};
+
+    // Initialize empty arrays for each category first
+    models.forEach((model: Model) => {
         const category = model.category || "Uncategorized";
-        if (!acc[category]) acc[category] = [];
-        acc[category].push(model);
-        return acc;
-    }, {});
+        if (!groupedModels[category]) {
+            groupedModels[category] = [];
+        }
+    });
+
+    // Now add models in their sorted order
+    models.forEach((model: Model) => {
+        const category = model.category || "Uncategorized";
+        groupedModels[category].push(model);
+    });
+
+    // Debug: Log the first model in each category
+    console.log('[CLIENT] First model in each category:');
+    Object.keys(groupedModels).forEach(category => {
+        const firstModel = groupedModels[category][0];
+        console.log(`  ${category}: ${firstModel.name} (ID: ${firstModel.id})`);
+    });
 
     // Get related models for detail view
     const getRelatedModels = (currentModel: Model | null, allModels: Model[]): Model[] => {
@@ -184,12 +208,12 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
         <>
             <Head>
                 <title>{currentModel ? `${toTitleCase(currentModel.name)} — Models` : 'Models'}</title>
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link
                     href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
                     rel="stylesheet"
-                />
+                /> */}
             </Head>
 
             {/* Conditionally render Header - only show on grid view, not on detail pages */}

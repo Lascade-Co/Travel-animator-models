@@ -1,5 +1,5 @@
 import ModelsGridClient from '../components/models_grid_Client';
-import { getAllModels } from '../models_cache';
+import { getAllModels, getModelUsageMap } from '../models_cache';
 
 // Metadata for the page
 export const metadata = {
@@ -7,17 +7,28 @@ export const metadata = {
   description: 'Browse our collection of 3D models for travel animation',
 };
 
-// Main page component
 export default async function ModelsPage() {
   // Fetch all models at build time (cached)
   const models = await getAllModels();
-
-  console.log('[MODELS PAGE] Models fetched:', models?.length || 0);
-  console.log('[MODELS PAGE] First few models:', models?.slice(0, 3));
+  
+  // Fetch PostHog usage data at build time
+  const usageMap = await getModelUsageMap();
+  
+  // Sort models by usage within their categories
+  const sortedModels = models.sort((a, b) => {
+    // IMPORTANT: Convert IDs to strings for comparison
+    const idA = String(a.id || '');
+    const idB = String(b.id || '');
+    
+    const rankA = usageMap.get(idA) ?? Infinity;
+    const rankB = usageMap.get(idB) ?? Infinity;
+    
+    return rankA - rankB; // Lower rank = more used = comes first
+  });
 
   return (
     <div>
-      <ModelsGridClient initialModels={models} />
+      <ModelsGridClient initialModels={sortedModels} />
     </div>
   );
 }
