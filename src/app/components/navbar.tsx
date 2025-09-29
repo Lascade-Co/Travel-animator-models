@@ -3,6 +3,8 @@
 import './navbar.css';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
+import logo from '../images/logo.png';
+import Link from "next/link";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,9 +25,9 @@ export default function Navbar() {
 
   return (
     <div className="nav-bar" ref={menuRef}>
-      <div className="logo-brand-text">
+      <Link href='https://travelanimator.com' className="logo-brand-text">
         <Image
-          src="https://travelanimator.com/wp-content/uploads/2025/09/logo.svg"
+          src={logo}
           alt="logo"
           width={50}
           height={50}
@@ -38,9 +40,10 @@ export default function Navbar() {
           height={30}
           className="brand-text"
         />
-      </div>
+      </Link>
 
       <div className="menu">
+        <a href="http://models.travelanimator.com">Models</a>
         <a href="http://support.travelanimator.com">Forum</a>
         <a href="https://airtable.com/appbc8jMEFA2bbnzx/pagwP6ZWi67qw4j3b/form">
           Collaborate with us
