@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getModelSlugs, getModelById, Model, getAllModels, getModelDetailById } from '../../models_cache';
+import { getModelSlugs, getModelById, Model, getAllModels, getModelDetailById, getPosthogInsight } from '../../models_cache';
 import styles from './modelDetail.module.css';
 import RelatedModels from './related_models';
 import Navbar from '@/app/components/navbar';
@@ -15,6 +15,9 @@ export async function generateStaticParams() {
     const modelSlugs = await getModelSlugs();
 
     const params = modelSlugs.map(id => ({ id: id }));
+
+    const postHogResponse = await getPosthogInsight();
+    console.log('[BUILD] PostHog data received:', postHogResponse);
 
     console.log(`[BUILD] Generated ${params.length} static params for model pages`);
     return params;

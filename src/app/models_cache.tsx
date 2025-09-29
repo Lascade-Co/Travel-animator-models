@@ -153,3 +153,28 @@ export async function getModelById(id: string): Promise<Model | null> {
     return null;
   }
 }
+
+// lib/posthog.js
+export async function getPosthogInsight() {
+  const POSTHOG_PROJECT_ID = "107752";
+  const POSTHOG_PERSONAL_API_KEY = 'phx_tDIWFmhgN2JB7INm0sfvJ3PHWbZCAHr6CMU25J5DVm55jFI';
+  const shortId = 'wWjNhQcp';
+
+  const response = await fetch(
+    `https://us.posthog.com/api/projects/${POSTHOG_PROJECT_ID}/insights/?short_id=${shortId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${POSTHOG_PERSONAL_API_KEY}`,
+      },
+      cache: "no-store", // ensures no caching in Next.js fetch
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`PostHog API error: ${response.status}`);
+  }
+
+  const data = await response.json(); // Add await here
+  console.log("POSTHOG INSIGHT: ", JSON.stringify(data, null, 2)); // Pretty print
+  return data;
+}
