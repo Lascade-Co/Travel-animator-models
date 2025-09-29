@@ -104,7 +104,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
         const currentIndex = allModels.findIndex(m => m.id === currentModel.id);
         if (currentIndex === -1) return [];
 
-        const numRelatedModels = 5;
+        const numRelatedModels = 6;
         const relatedModels: Model[] = [];
 
         for (let i = 1; i <= numRelatedModels; i++) {

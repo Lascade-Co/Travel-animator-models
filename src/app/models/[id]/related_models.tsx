@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './modelDetail.module.css'
@@ -10,6 +11,20 @@ interface RelatedModelsProps {
 }
 
 export default function RelatedModels({ relatedModels }: RelatedModelsProps) {
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+
+  useEffect(() => {
+    // Check screen size on mount and resize
+    const checkScreenSize = () => {
+      setIsMobileOrTablet(window.innerWidth <= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   const slugify = (str: string | undefined | null): string => {
     return String(str || '').toLowerCase().trim()
       .replace(/[\s_]+/g, '-')
@@ -27,6 +42,9 @@ export default function RelatedModels({ relatedModels }: RelatedModelsProps) {
     return null;
   }
 
+  // Show 6 models on mobile/tablet, 5 on desktop
+  const modelsToShow = isMobileOrTablet ? relatedModels.slice(0, 6) : relatedModels.slice(0, 5);
+
   return (
     <div className={styles.relatedModels}>
       <div className={styles.cards} style={{ padding: '16px' }}>
@@ -34,7 +52,7 @@ export default function RelatedModels({ relatedModels }: RelatedModelsProps) {
           Related Models
         </h3>
         <div className={styles.modelsGrid}>
-          {relatedModels.map((model, index) => {
+          {modelsToShow.map((model, index) => {
             const thumb = model.textures?.[0]?.thumbnail || '';
             const name = model.name || '';
             const slug = slugify(name);
