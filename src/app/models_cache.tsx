@@ -38,8 +38,6 @@ async function fetchAllModelsInternal(): Promise<Model[]> {
           
         },
         next: { revalidate: 3600 },
-        // Ensure fresh data at build time
-        cache: 'no-store'
       });
 
       if (!res.ok) {
