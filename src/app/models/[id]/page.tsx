@@ -39,23 +39,6 @@ const truncateToWords = (text: string | undefined | null, maxWords: number): str
     return words.slice(0, maxWords).join(' ') + '...';
 };
 
-// Generate metadata for each model page
-export async function generateMetadata({ params }: { params: { id: string } }) {
-    const model = await getModelById(params.id);
-
-    if (!model) {
-        return {
-            title: 'Model Not Found - Travel Animator',
-            description: 'The requested model could not be found.',
-        };
-    }
-
-    return {
-        title: `${toTitleCase(model.name)} — Models - Travel Animator`,
-        description: model.description ? truncateToWords(model.description, 20) : `3D model: ${toTitleCase(model.name)}`,
-    };
-}
-
 // Props interface
 interface PageProps {
     params: {

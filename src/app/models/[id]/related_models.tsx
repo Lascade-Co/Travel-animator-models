@@ -44,6 +44,7 @@ export default function RelatedModels({ relatedModels }: RelatedModelsProps) {
 
   // Show 6 models on mobile/tablet, 5 on desktop
   const modelsToShow = isMobileOrTablet ? relatedModels.slice(0, 6) : relatedModels.slice(0, 5);
+  console.log("modelsToShow: ", modelsToShow, isMobileOrTablet);
 
   return (
     <div className={styles.relatedModels}>
