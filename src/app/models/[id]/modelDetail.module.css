@@ -46,7 +46,6 @@ html, body {
     aspect-ratio: 1 / 1;
     border-radius: 48px;
     overflow: hidden;
-    object-fit: cover;
 }
 
 .descriptionAndCategory {
