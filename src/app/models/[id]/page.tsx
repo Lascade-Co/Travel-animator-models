@@ -143,7 +143,13 @@ export default async function ModelDetailPage({ params }: PageProps) {
                             </div>
                             <Image
                                 id="md-hero"
-                                src={model.textures?.[0]?.thumbnail || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjI0IiBoZWlnaHQ9IjIyNCIgdmlld0JveD0iMCAwIDIyNCAyMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMjQiIGhlaWdodD0iMjI0IiByeD0iNDgiIGZpbGw9IiMzMzMiLz4KPHN2ZyB4PSI5MiIgeT0iOTIiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNjY2Ij4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZT0iY3VycmVudENvbG9yIj4KICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im0yLjI1IDEyIDguOTU0LTguOTU1YTEuMTI2IDEuMTI2IDAgMCAxIDEuNTkxIDBMMjEuNzUgMTIiIC8+CiAgPHBhdGggc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJtNy40OTggOC44NyA3LjgwNCA3LjgwNCIgLz4KICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im0yLjI1IDE4VjIyYTMuNzUgMy43NSAwIDAgMCAzLjc1IDMuNzVIMThhMy43NSAzLjUgMCAwIDAgMy43NS0zLjc1di00TTEzLjUgMjF2MS41IiAvPgo8L3N2Zz4KPC9zdmc+Cjwvc3ZnPg=='}
+                                src={
+                                    model.cover_image
+                                        ? model.cover_image
+                                        : model.textures?.[0]?.thumbnail
+                                            ? model.textures[0].thumbnail
+                                            : 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjI0IiBoZWlnaHQ9IjIyNCIgdmlld0JveD0iMCAwIDIyNCAyMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+...'
+                                }
                                 alt={model.name || "Model"}
                                 width={224}
                                 height={224}
@@ -151,9 +157,10 @@ export default async function ModelDetailPage({ params }: PageProps) {
                                     width: '14rem',
                                     height: '14rem',
                                     borderRadius: '48px',
-                                    objectFit: 'cover'
+                                    objectFit: 'cover',
                                 }}
                             />
+
                         </div>
 
                         <RelatedModels relatedModels={relatedModels} />

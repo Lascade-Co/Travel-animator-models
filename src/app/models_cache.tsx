@@ -12,6 +12,7 @@ export interface Model {
   category?: string;
   description?: string;
   textures?: Texture[];
+  cover_image?: string;
 }
 
 interface ApiResponse {
