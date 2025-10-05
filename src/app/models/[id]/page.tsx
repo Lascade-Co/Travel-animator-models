@@ -190,6 +190,5 @@ export default async function ModelDetailPage({ params }: PageProps) {
     );
 }
 
-// Force static generation (no revalidation)
-export const dynamic = 'force-static';
-export const revalidate = false;
+// ISR: Revalidate every 24 hours (21600 seconds)
+export const revalidate = 86400; // Change to your preferred time
