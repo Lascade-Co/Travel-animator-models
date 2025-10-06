@@ -4,7 +4,7 @@
 }
 
 .nav-bar {
-    width: 93%;
+    width: 96%;
     height: 3rem;
     padding: 2.5rem 0;
     display: flex;
@@ -38,23 +38,37 @@
 }
 
 .menu {
-    width: 50%;
+    width: 57%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 2rem;
+    justify-content: center;
+    gap: 10px;
+    background-color: #FFFFFF14;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    height: 45px;
+    border-radius: 32px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-top: 0.8px solid white;
+    border-bottom: 0.8px solid white;
 }
 
 .menu a {
     text-decoration: none;
     color: white;
-    font-family: 'SF Pro Rounded', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 800;
     font-style: Semibold;
     font-size: 14px;
     line-height: 90%;
     letter-spacing: 0%;
+    padding: 1rem 1.2rem;
+}
+
+.menu a:hover {
+    background-color: rgba(44, 42, 42, 0.1);
+    border-radius: 24px;
 }
 
 .menu_icon {
@@ -62,6 +76,23 @@
     height: 24px;
     cursor: pointer;
     display: none;
+}
+
+.sign_in_button {
+    height: 45px;
+    width: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
+    border-radius: 24px;
+    backdrop-filter: blur(87px);
+    background-color: white;
+    border: none;
+    color: #0C90E6;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .mobile-menu {

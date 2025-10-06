@@ -3,7 +3,7 @@
 import './navbar.css';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
-import logo from '../images/logo.png';
+import logo from '../images/brand_logo.svg';
 import Link from "next/link";
 
 export default function Navbar() {
@@ -33,13 +33,6 @@ export default function Navbar() {
           height={50}
           className="logo"
         />
-        <Image
-          src="https://travelanimator.com/wp-content/uploads/2025/09/brand_text.svg"
-          alt="brand text"
-          width={120}
-          height={30}
-          className="brand-text"
-        />
       </Link>
 
       <div className="menu">
@@ -61,6 +54,8 @@ export default function Navbar() {
         className="menu_icon"
         onClick={() => setMenuOpen(!menuOpen)}
       />
+
+      <div className='sign_in_button'>Sign in</div>
 
       {menuOpen && <div className="mobile-menu-overlay" onClick={() => setMenuOpen(false)} />}
       <div className={`mobile-menu ${menuOpen ? "show" : ""}`}>
