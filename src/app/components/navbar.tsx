@@ -46,6 +46,8 @@ export default function Navbar() {
         <a href="https://travelanimator.com/release-notes/">Releases</a>
       </div>
 
+      <div className='sign_in_button'>Sign in</div>
+
       <Image
         src="https://travelanimator.com/wp-content/uploads/2025/09/menu_icon.svg"
         alt="Menu"
@@ -55,12 +57,9 @@ export default function Navbar() {
         onClick={() => setMenuOpen(!menuOpen)}
       />
 
-      <div className='sign_in_button'>Sign in</div>
-
       {menuOpen && <div className="mobile-menu-overlay" onClick={() => setMenuOpen(false)} />}
       <div className={`mobile-menu ${menuOpen ? "show" : ""}`}>
         <div className="mobile-menu-header">
-          <span className="menu-title">Menu</span>
           <span className="close-icon" onClick={() => setMenuOpen(false)}>✕</span>
         </div>
         <a href="http://models.travelanimator.com" onClick={() => setMenuOpen(false)}>Models</a>
@@ -71,6 +70,7 @@ export default function Navbar() {
         <a href="https://travelanimator.com/hub" onClick={() => setMenuOpen(false)}>Resource Hub</a>
         <a href="mailto:connect@travelanimator.com" onClick={() => setMenuOpen(false)}>Be our partner</a>
         <a href="https://travelanimator.com/release-notes/" onClick={() => setMenuOpen(false)}>Releases</a>
+        <a href="/">Sign in</a>
       </div>
     </div>
   );

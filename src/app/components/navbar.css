@@ -76,6 +76,7 @@
     height: 24px;
     cursor: pointer;
     display: none;
+    margin-right: 1rem;
 }
 
 .sign_in_button {
@@ -134,18 +135,9 @@
 
 .mobile-menu-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.menu-title {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    color: white;
 }
 
 .close-icon {
@@ -192,6 +184,10 @@
         position: relative;
     }
 
+    .sign_in_button {
+        display: none;
+    }
+
     .mobile-menu {
         width: 75%;
         max-width: 280px;
@@ -211,6 +207,10 @@
         position: relative;
     }
 
+    .sign_in_button {
+        display: none;
+    }
+
     .mobile-menu {
         width: 70%;
         max-width: 300px;
@@ -219,6 +219,23 @@
 
 @media (max-width: 1080px) and (min-width: 769px) {
     .menu {
+        display: none;
+    }
+
+    .menu_icon {
+        display: block;
+    }
+
+    .nav-bar {
+        position: relative;
+    }
+
+    .sign_in_button {
+        display: none;
+    }
+
+    .mobile-menu {
         width: 70%;
+        max-width: 300px;
     }
 }
