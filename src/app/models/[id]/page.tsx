@@ -191,4 +191,4 @@ export default async function ModelDetailPage({ params }: PageProps) {
 }
 
 // ISR: Revalidate every 24 hours (21600 seconds)
-export const revalidate = 60; // Change to your preferred time
+export const revalidate = 86400; // Change to your preferred time
