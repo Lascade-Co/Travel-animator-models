@@ -70,7 +70,7 @@ export default function Navbar() {
         <a href="https://travelanimator.com/hub" onClick={() => setMenuOpen(false)}>Resource Hub</a>
         <a href="mailto:connect@travelanimator.com" onClick={() => setMenuOpen(false)}>Be our partner</a>
         <a href="https://travelanimator.com/release-notes/" onClick={() => setMenuOpen(false)}>Releases</a>
-        <a href="/">Sign in</a>
+        <Link href="/">Sign in</Link>
       </div>
     </div>
   );

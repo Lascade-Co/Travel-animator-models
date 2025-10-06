@@ -38,7 +38,7 @@ async function fetchAllModelsInternal(): Promise<Model[]> {
           "accept": "application/json",
 
         },
-        cache: 'no-store',
+        cache: 'force-cache',
       });
 
       if (!res.ok) {
@@ -138,7 +138,7 @@ export async function getModelById(id: string): Promise<Model | null> {
       headers: {
         "accept": "application/json",
       },
-      cache: 'no-store'
+      cache: 'force-cache'
     });
 
     if (!res.ok) {

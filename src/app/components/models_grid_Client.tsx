@@ -40,14 +40,10 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
         console.log('[CLIENT] Received models count:', models.length);
         console.log('[CLIENT] First 5 models:', models.slice(0, 5).map(m => ({ id: m.id, name: m.name })));
     }, [models]);
-    
+
     const [currentModel, setCurrentModel] = useState<Model | null>(null);
     const [showDetail, setShowDetail] = useState<boolean>(false);
     const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
-
-    // Refs
-    const observerRef = useRef<IntersectionObserver | null>(null);
-    const containerRef = useRef<HTMLDivElement | null>(null);
 
     // Utility functions
     const toTitleCase = (str: string | undefined | null): string => {
@@ -72,44 +68,6 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
         return words.slice(0, maxWords).join(' ') + '...';
     };
 
-    // Lazy loading setup
-    const setupIntersectionObserver = useCallback(() => {
-        if (observerRef.current) {
-            observerRef.current.disconnect();
-        }
-
-        observerRef.current = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target.querySelector('img');
-                    if (img && img.dataset.src && !img.classList.contains('loaded')) {
-                        entry.target.classList.add('loading');
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-
-                        img.onload = () => {
-                            img.classList.add('loaded');
-                            entry.target.classList.remove('loading');
-                            entry.target.classList.add('loaded');
-                        };
-
-                        img.onerror = () => {
-                            img.classList.add('loaded');
-                            entry.target.classList.remove('loading');
-                            entry.target.classList.add('loaded');
-                        };
-                    }
-                    if (observerRef.current) {
-                        observerRef.current.unobserve(entry.target);
-                    }
-                }
-            });
-        }, {
-            rootMargin: '100px',
-            threshold: 0.1
-        });
-    }, []);
-
     // Handle model click
     const handleModelClick = (e: React.MouseEvent, model: Model) => {
         e.preventDefault();
@@ -132,6 +90,7 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
     };
 
     // Effects
+    // REPLACE the existing useEffect with this simplified version:
     useEffect(() => {
         // Handle URL parsing on client side only to prevent hydration mismatch
         if (typeof window !== 'undefined') {
@@ -150,15 +109,8 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
                 }
             }
         }
-
-        setupIntersectionObserver();
-
-        return () => {
-            if (observerRef.current) {
-                observerRef.current.disconnect();
-            }
-        };
-    }, [models, router, setupIntersectionObserver]);
+        // Remove setupIntersectionObserver() call and cleanup
+    }, [models, router]); // Remove setupIntersectionObserver from dependencies
 
     // Group models by category WHILE PRESERVING SORT ORDER
     const groupedModels: GroupedModels = {};
@@ -223,7 +175,7 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
                 {!showDetail ? (
                     // Grid Section
                     <div id="grid-section">
-                        <div id="models-container" ref={containerRef}>
+                        <div id="models-container">
                             {Object.keys(groupedModels).map(category => {
                                 const categoryModels = groupedModels[category];
                                 const isExpanded = expandedSections.has(category);
