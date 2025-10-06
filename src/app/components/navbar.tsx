@@ -46,7 +46,7 @@ export default function Navbar() {
         <a href="https://travelanimator.com/release-notes/">Releases</a>
       </div>
 
-      <div className='sign_in_button'>Sign in</div>
+      {/* <div className='sign_in_button'>Sign in</div> */}
 
       <Image
         src="https://travelanimator.com/wp-content/uploads/2025/09/menu_icon.svg"
@@ -70,7 +70,7 @@ export default function Navbar() {
         <a href="https://travelanimator.com/hub" onClick={() => setMenuOpen(false)}>Resource Hub</a>
         <a href="mailto:connect@travelanimator.com" onClick={() => setMenuOpen(false)}>Be our partner</a>
         <a href="https://travelanimator.com/release-notes/" onClick={() => setMenuOpen(false)}>Releases</a>
-        <Link href="/">Sign in</Link>
+        {/* <Link href="/">Sign in</Link> */}
       </div>
     </div>
   );
