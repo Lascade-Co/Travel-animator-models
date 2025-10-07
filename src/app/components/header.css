@@ -53,6 +53,8 @@ body {
 
     .header {
         height: 15rem;
+        border-top-left-radius: 34px;
+        border-top-right-radius: 34px;
     }
 
     .cloud1,
