@@ -168,7 +168,7 @@
 .earth_2 {
     position: absolute;
     z-index: 100;
-    background: url(../../images/earth_2.png) bottom / cover no-repeat;
+    background: url(../../images/earth.png) bottom / cover no-repeat;
     background-blend-mode: multiply;
     background-size: 65rem 17rem;
     width: 100%;
@@ -313,6 +313,7 @@
         overflow: hidden;
         height: 20rem;
         width: 100%;
+        margin-top: 2rem;
     }
 
     .sub_heading-text {

@@ -106,6 +106,7 @@ h2.models-title {
     justify-items: center;
     align-items: center;
     width: 80%;
+    max-width: 1400px;
     margin-left: 50%;
     transform: translateX(-50%);
 }
@@ -234,15 +235,16 @@ body .model-card p,
 .earth_2 {
     position: absolute;
     z-index: 100;
-    background: url(../images/earth_2.png) bottom / cover no-repeat;
+    background: url(../images/earth.png) bottom / cover no-repeat;
     background-blend-mode: multiply;
-    background-size: 65rem 17rem;
+    background-size: 75%;
     width: 100%;
     height: 100%;
     will-change: transform;
 }
 
 .boat {
+    display: none;
     position: absolute;
     bottom: 43.5%;
     width: 50px;
@@ -359,6 +361,7 @@ body .model-card p,
     }
 
     .boat {
+        display: block;
         bottom: 49.5%;
     }
 
@@ -466,6 +469,7 @@ body .model-card p,
     }
 
     .boat {
+        display: block;
         bottom: 39.5%;
     }
 
@@ -569,6 +573,7 @@ body .model-card p,
     }
 
     .boat {
+        display: block;
         bottom: 47.5%;
         width: 60px;
         height: 60px;
