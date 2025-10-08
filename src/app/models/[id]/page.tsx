@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { getModelSlugs, getModelById, Model, getAllModels, getModelDetailById } from '../../models_cache';
 import styles from './modelDetail.module.css';
 import RelatedModels from './related_models';
-import Navbar from '@/app/components/navbar';
+import Navbar from '../../maps/components/navbar';
 import boat from '../../images/boat.png'
 import travelAnimator from '../../images/travel_animator.png';
 

@@ -2,8 +2,8 @@
 
 import './header.css';
 import Image from 'next/image';
-import Navbar from './navbar';
 import Heading from './heading';
+import Navbar from '../maps/components/navbar';
 
 export default function Header() {
     return (

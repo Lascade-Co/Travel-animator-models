@@ -1,7 +1,7 @@
 "use client";
 
 import './navbar.css';
-import logo from '../../images/brand_logo.svg';
+import logo from '../../images/logo.webp';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
