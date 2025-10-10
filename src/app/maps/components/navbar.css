@@ -12,7 +12,7 @@
 }
 
 .menu {
-    width: 85%;
+    width: 71%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -44,11 +44,26 @@
     border-radius: 24px;
 }
 
+.get-app-btn {
+    padding: 0 18px;
+    height: 45px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #0C90E6;
+    background-color: white;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
 .hamburger-menu {
     width: 1.8rem;
     height: 24px;
     cursor: pointer;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -134,12 +149,121 @@
     right: 0;
 }
 
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+    animation: fadeIn 0.3s forwards;
+}
+
+.popup-container {
+    width: 953px;
+    height: 450px;
+    background: linear-gradient(#00AEFF, #0080FF);
+    border-radius: 66px;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease-out;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    width: 50%;
+    height: 100%;
+}
+
+.text-content-1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 56;
+    font-weight: 700;
+    letter-spacing: -3px;
+    line-height: 1.15;
+}
+
+.text-content-2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 24;
+    font-weight: 500;
+}
+
+.device-icons {
+    padding: 0 18px;
+    height: 45px;
+    background-color: white;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+.qr-code {
+    width: 300;
+    height: 300;
+    /* padding: 20px; */
+    border-radius: 38px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes slideIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.mobile-navbar {
+    display: none;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+.get-app-btn-mobile {
+    color: rgb(12, 144, 230);
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    border-radius: 24px;
+    justify-content: center;
+    align-items: center;
+    height: 31px;
+    padding: 0px 12px;
+    font-family: Nunito, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+}
+
 @media (max-width: 480px) {
     .menu {
         display: none;
     }
 
-    .hamburger-menu {
+    .mobile-navbar {
         display: flex;
     }
 
@@ -155,6 +279,15 @@
         width: 75%;
         max-width: 280px;
     }
+
+    .popup-overlay,
+    .popup-container {
+        display: none;
+    }
+
+    .get-app-btn {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) and (min-width: 481px) {
@@ -162,7 +295,7 @@
         display: none;
     }
 
-    .hamburger-menu {
+    .mobile-navbar {
         display: flex;
     }
 
@@ -170,13 +303,13 @@
         position: relative;
     }
 
-    /* .sign_in_button {
-        display: none;
-    } */
-
     .mobile-menu {
         width: 70%;
         max-width: 300px;
+    }
+
+    .get-app-btn {
+        display: none;
     }
 }
 
@@ -185,7 +318,7 @@
         display: none;
     }
 
-    .hamburger-menu {
+    .mobile-navbar {
         display: flex;
     }
 
@@ -193,9 +326,14 @@
         position: relative;
     }
 
-    /* .sign_in_button {
+    .get-app-btn {
         display: none;
-    } */
+    }
+
+    .get-app-btn-mobile {
+        height: 35px;
+        padding: 0 18px;
+    }
 
     .mobile-menu {
         width: 70%;
