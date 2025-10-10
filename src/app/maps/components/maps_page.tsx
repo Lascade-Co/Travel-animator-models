@@ -1,5 +1,5 @@
 import Footer from "./footer";
-import Header from "./header";
+import Header from "./maps_header";
 import MapsGrid from "./maps_grid";
 import './maps_page.css';
 import Image from 'next/image';

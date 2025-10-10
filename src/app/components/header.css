@@ -19,7 +19,6 @@ body {
     border-top-left-radius: 43px;
     border-top-right-radius: 43px;
     overflow: hidden;
-    max-width: 1800px;
     margin-left: 50%;
     transform: translateX(-50%);
 }

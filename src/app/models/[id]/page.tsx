@@ -176,9 +176,9 @@ export default async function ModelDetailPage({ params }: PageProps) {
                         <Image width={0} height={0} src={travelAnimator} alt="Travel Animator" />
                     </div>
                     <div className={styles.privacy_section}>
-                        <a href="https://travelanimator.com/privacy-policy/" className={styles.privacy_policy}>Privacy Policy</a>
-                        <a href="https://travelanimator.com/terms-of-service/" className={styles.privacy_policy} style={{ textDecoration: 'none' }}>Terms of Service</a>
-                        <a href='https://travelanimator.com/privacy-policy/' className={styles.privacy_policy}>Cookie Policy</a>
+                        <Link href="https://travelanimator.com/privacy-policy/" className={styles.privacy_policy}>Privacy Policy</Link>
+                        <Link href="https://travelanimator.com/terms-of-service/" className={styles.privacy_policy} style={{ textDecoration: 'none' }}>Terms of Service</Link>
+                        <Link href='https://travelanimator.com/privacy-policy/' className={styles.privacy_policy}>Cookie Policy</Link>
                     </div>
                     <div className={styles.copyright_section}>
                         <span className="cc-icon" role="img" aria-label="Copyright">©</span>

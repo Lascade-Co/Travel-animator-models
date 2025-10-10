@@ -24,7 +24,7 @@ h2.models-title {
 }
 
 .models-section.height-limited {
-    height: 24.5rem;
+    height: 40.8rem;
     overflow: hidden;
     position: relative;
 }
@@ -106,7 +106,6 @@ h2.models-title {
     justify-items: center;
     align-items: center;
     width: 80%;
-    max-width: 1400px;
     margin-left: 50%;
     transform: translateX(-50%);
 }

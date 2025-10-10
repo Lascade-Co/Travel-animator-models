@@ -37,14 +37,15 @@ export default function Navbar() {
                 <div className="mobile-menu-header">
                     <span className="close-icon" onClick={() => setMenuOpen(false)}>✕</span>
                 </div>
-                <a href="http://models.travelanimator.com" onClick={() => setMenuOpen(false)}>Models</a>
-                <a href="http://support.travelanimator.com" onClick={() => setMenuOpen(false)}>Forum</a>
-                <a href="https://airtable.com/appbc8jMEFA2bbnzx/pagwP6ZWi67qw4j3b/form" onClick={() => setMenuOpen(false)}>
+                <Link href="http://models.travelanimator.com" onClick={() => setMenuOpen(false)}>Models</Link>
+                <Link href="https://models.travelanimator.com/maps" onClick={() => setMenuOpen(false)}>Maps</Link>
+                <Link href="http://support.travelanimator.com" onClick={() => setMenuOpen(false)}>Forum</Link>
+                <Link href="https://airtable.com/appbc8jMEFA2bbnzx/pagwP6ZWi67qw4j3b/form" onClick={() => setMenuOpen(false)}>
                     Collaborate with us
-                </a>
-                <a href="https://travelanimator.com/hub" onClick={() => setMenuOpen(false)}>Resource Hub</a>
-                <a href="mailto:connect@travelanimator.com" onClick={() => setMenuOpen(false)}>Be our partner</a>
-                <a href="https://travelanimator.com/release-notes/" onClick={() => setMenuOpen(false)}>Releases</a>
+                </Link>
+                <Link href="https://travelanimator.com/hub" onClick={() => setMenuOpen(false)}>Resource Hub</Link>
+                <Link href="mailto:connect@travelanimator.com" onClick={() => setMenuOpen(false)}>Be our partner</Link>
+                <Link href="https://travelanimator.com/release-notes/" onClick={() => setMenuOpen(false)}>Releases</Link>
             </div>
         </>
     );
@@ -57,14 +58,15 @@ export default function Navbar() {
                 </Link>
 
                 <div className="menu">
-                    <a href="http://models.travelanimator.com">Models</a>
-                    <a href="http://support.travelanimator.com">Forum</a>
-                    <a href="https://airtable.com/appbc8jMEFA2bbnzx/pagwP6ZWi67qw4j3b/form">
+                    <Link href="/">Models</Link>
+                    <Link href="/maps">Maps</Link>
+                    <Link href="http://support.travelanimator.com">Forum</Link>
+                    <Link href="https://airtable.com/appbc8jMEFA2bbnzx/pagwP6ZWi67qw4j3b/form">
                         Collaborate with us
-                    </a>
-                    <a href="https://travelanimator.com/hub">Resource Hub</a>
-                    <a href="mailto:connect@travelanimator.com">Be our partner</a>
-                    <a href="https://travelanimator.com/release-notes/">Releases</a>
+                    </Link>
+                    <Link href="https://travelanimator.com/hub">Resource Hub</Link>
+                    <Link href="mailto:connect@travelanimator.com">Be our partner</Link>
+                    <Link href="https://travelanimator.com/release-notes/">Releases</Link>
                 </div>
 
                 <div className="hamburger-menu" onClick={() => setMenuOpen(!menuOpen)}>

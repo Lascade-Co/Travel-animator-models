@@ -1,4 +1,4 @@
-import './header.css';
+import './maps_header.css';
 import Navbar from './navbar';
 import Image from 'next/image';
 import cloud1 from '../../images/cloud_1.png';

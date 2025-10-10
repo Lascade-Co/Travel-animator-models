@@ -370,8 +370,8 @@ export default function ModelsGridClient({ initialModels = [] }: ModelsGridProps
                     <Image width={0} height={0} src={travelAnimator} alt="Travel Animator" />
                 </div>
                 <div className="privacy-section">
-                    <a href="" className="privacy-policy">Privacy Policy</a>
-                    <a href="" className="privacy-policy" style={{ textDecoration: 'none' }}>Terms of Service</a>
+                    <Link href="" className="privacy-policy">Privacy Policy</Link>
+                    <Link href="" className="privacy-policy" style={{ textDecoration: 'none' }}>Terms of Service</Link>
                     <div className="privacy-policy">Cookie Policy</div>
                 </div>
                 <div className="copyright-section">
