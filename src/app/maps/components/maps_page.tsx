@@ -5,7 +5,7 @@ import './maps_page.css';
 import Image from 'next/image';
 
 // Define the Map type
-interface Map {
+export interface Map {
     id: number;
     name: string;
     thumbnail: string;

@@ -1,6 +1,5 @@
 .header {
     width: 100%;
-    max-width: 1500px;
     height: 31rem;
     background: linear-gradient(var(--gradient_1), var(--gradient_2));
     border-radius: 43px;

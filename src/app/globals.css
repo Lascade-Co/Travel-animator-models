@@ -42,3 +42,9 @@ a {
       margin-bottom: 0;
     }
 }
+
+@media (max-width: 768px) and (min-width: 481px) {
+  html, body {
+    overflow-x: hidden;
+  }
+}
